@@ -35,5 +35,10 @@ jobs:
           HUGO_ENV: production
         run: |
           hugo --gc --minify; hugo deploy --invalidateCDN
+      - name: Commit and push changes
+        uses: devops-infra/action-commit-push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: Post-Deployment Commit
 
           
