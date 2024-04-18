@@ -247,7 +247,7 @@ params:
   # Community Contributions
   contributions:
     enable: false
-    title: "Community Contributions"
+    title: "Contributions"
     items:
       - title: Tech Exchange Project Coach (Spring 2022)
         content: Guided a group of three HBCU sophomores as they completed projects for a software development course 
