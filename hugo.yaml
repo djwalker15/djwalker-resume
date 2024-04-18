@@ -246,7 +246,7 @@ params:
   
   # Community Contributions
   contributions:
-    enable: false
+    enable: true
     title: "Contributions"
     items:
       - title: Tech Exchange Project Coach (Spring 2022)
