@@ -13,6 +13,9 @@ defaults:
     
 jobs:
   deploy:
+    permissions:
+     contents: 'read'
+     id-token: 'write'
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.124.0
@@ -28,6 +31,11 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+      - uses: 'google-github-actions/auth@v2'
+        with:
+          project_id: 'mycloudresume'
+          workload_identity_provider: 'projects/1040086142155/locations/global/workloadIdentityPools/github/providers/my-repo'
+          service_account: 'gh-actions-service-account@mycloudresume.iam.gserviceaccount.com'
       - name: Build with Hugo
         env:
           # For maximum backward compatibility with Hugo modules
