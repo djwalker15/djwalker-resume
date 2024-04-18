@@ -12,7 +12,7 @@ defaults:
     shell: bash
     
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.124.0
@@ -34,11 +34,11 @@ jobs:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
-          hugo --gc --minify
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy with Hugo
-        run: |
-          hugo deploy --invalidateCDN
+          hugo --gc --minify; hugo deploy --invalidateCDN
+      - name: Commit and push changes
+        uses: devops-infra/action-commit-push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: Post-Deployment Commit
+
+          
